@@ -42,9 +42,10 @@ object AkkaServerExample {
           }
         } ~
         path("chunked") {
-          //make it post
-          onComplete(new AService().chunked()) { a =>
-            complete("sent")
+          post {
+            onComplete(new AService().chunked()) { a =>
+              complete("sent")
+            }
           }
         }
     }
