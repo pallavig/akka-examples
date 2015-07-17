@@ -1,0 +1,27 @@
+1.  [INFO] starting system
+2.  [DEBUG] starting subsystem 1
+3.  [ERROR] could not initalize subsystem 1  
+4.  [DEBUG] starting subsystem 2
+5.  [ERROR] could not initalize subsystem 2
+6. something else
+7.  [WARN] bad sign
+8.  [INFO] aright, sorted it out
+9.  [DEBUG] working...
+10. [DEBUG] all done
+11. [INFO] shutting down system1.  [INFO] starting system
+Scala.js Tutorial
+This step-by-step tutorial where we start with the setup of a Scala.js sbt project and end up having some user interaction and unit testing. The code created in this tutorial is available with one commit per step in the scalajs-tutorial repository on GitHub.
+
+Step 0: Prerequisites
+To go through this tutorial, you will need to download & install sbt (>= 0.13.0). Note that no prior sbt knowledge (only a working installation) is required to follow the tutorial.
+
+Step 1: Setup
+First create a new folder where your sbt project will go.
+
+sbt Setup
+To setup Scala.js in a new sbt project, we need to do two things:
+
+Add the Scala.js sbt plugin to the build
+Enable the plugin in the project
+Adding the Scala.js sbt plugin is a one-liner in project/plugins.sbt (all file names we write in this tutorial are relative to the project root):
+
