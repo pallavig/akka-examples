@@ -11,7 +11,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-core-experimental" % "1.0-RC4",
   "com.typesafe.akka" %% "akka-http-experimental" % "1.0-RC4",
   "org.monifu" %%% "monifu" % "1.0-M1",
-  "org.scala-js" % "scalajs-dom_sjs0.6_2.11" % "0.8.1"
+  "org.scala-js" % "scalajs-dom_sjs0.6_2.11" % "0.8.1",
+  "org.scalatest" % "scalatest_2.11" % "3.0.0-M7"
 )
 
 //scalaJSStage in Global := FastOptStage
