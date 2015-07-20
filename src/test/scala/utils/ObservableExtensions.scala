@@ -1,5 +1,6 @@
 package utils
 
+import rx.lang.scala.subjects.PublishSubject
 import rx.lang.scala.{ Observable, Observer }
 
 object ObservableExtensions {
@@ -10,5 +11,11 @@ object ObservableExtensions {
     }
 
     def multicast = observable.replay
+
+    def hot = {
+      val x = PublishSubject[T]()
+      observable.take(10).subscribe(x)
+      x
+    }
   }
 }

@@ -11,7 +11,7 @@ object Observables {
     x
   }
 
-  def numberStream: Observable[Long] = Observable.interval(1.seconds).drop(1).take(10).map(log)
+  def numberStream: Observable[Long] = Observable.interval(100.millis).drop(1).map(log)
 
 }
 
