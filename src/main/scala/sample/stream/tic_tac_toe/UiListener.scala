@@ -40,7 +40,7 @@ object UiListener extends JSApp {
     document.body.appendChild(button11)
   }
 
-  def mouseEventStream(button: Button): Observable[MouseEvent] = {
+  def clickEventStream(button: Button): Observable[MouseEvent] = {
     val subject = PublishSubject[MouseEvent]()
     button.onclick = { event: MouseEvent =>
       subject.onNext(event)
@@ -64,7 +64,7 @@ object UiListener extends JSApp {
     val buttonIds = List("button11", "button12", "button13", "button21", "button22", "button23", "button31", "button32", "button33")
     val buttons = buttonIds.map(appendButtonWithId).map(_.asInstanceOf[Button])
 
-    buttons.map(button => mouseEventStream(button).subscribe { event: MouseEvent => buttonClicked(button) })
+    buttons.map(button => clickEventStream(button).subscribe { event: MouseEvent => buttonClicked(button) })
 
     def buttonClicked(element: Button) = {
       element.textContent = game.currentPlayer.sign
