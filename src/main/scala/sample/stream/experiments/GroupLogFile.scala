@@ -1,4 +1,4 @@
-package sample.stream
+package sample.stream.experiments
 
 import java.io.File
 
@@ -6,10 +6,7 @@ import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.io.Framing
 import akka.stream.scaladsl._
-import akka.stream.stage.{ Context, StatefulStage, SyncDirective }
 import akka.util.ByteString
-
-import scala.annotation.tailrec
 
 object GroupLogFile {
 

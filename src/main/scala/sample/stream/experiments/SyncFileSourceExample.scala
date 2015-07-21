@@ -1,13 +1,15 @@
-package sample.stream
+package sample.stream.experiments
 
 import java.io.File
+
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
 import akka.stream.io.SynchronousFileSource
-import akka.stream.scaladsl.{ Sink, Source }
+import akka.stream.scaladsl.{Sink, Source}
 import akka.util.ByteString
-import scala.concurrent.Future
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.Future
 
 object SyncFileSourceExample {
   def main(args: Array[String]) {
