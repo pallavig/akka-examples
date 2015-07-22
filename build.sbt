@@ -12,7 +12,8 @@ libraryDependencies ++= Seq(
   "com.typesafe.akka" %% "akka-http-experimental" % "1.0-RC4",
   "org.monifu" %%% "monifu" % "1.0-M1",
   "org.scala-js" % "scalajs-dom_sjs0.6_2.11" % "0.8.1",
-  "org.scalatest" % "scalatest_2.11" % "3.0.0-M7"
+  "org.scalatest" % "scalatest_2.11" % "3.0.0-M7",
+  "org.scala-lang.modules" % "scala-java8-compat_2.11" % "0.5.0"
 )
 
 //scalaJSStage in Global := FastOptStage
@@ -27,3 +28,5 @@ ScalariformKeys.preferences := ScalariformKeys.preferences.value
   .setPreference(PreserveDanglingCloseParenthesis, true)
 
 fork in run := true
+
+scalacOptions += "-Xexperimental"
