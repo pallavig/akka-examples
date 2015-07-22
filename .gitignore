@@ -48,3 +48,4 @@ worker*.log
 src/main/resources/akka-stream-scala-fastopt.js
 inmage-14315.jpeg
 image.jpeg
+def.txt
