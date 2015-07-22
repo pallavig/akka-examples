@@ -16,8 +16,9 @@ object WordCounterClosedShape {
     implicit val materializer = ActorMaterializer()
     import actorSystem.dispatcher
 
-    val numberOfFanouts = 3
     val sink = Flow[Int].map({ x => println(x); x }).toMat(Sink.fold(0)(_ + _))(Keep.right)
+
+    val flow = Flow[ByteString].map(_.utf8String)
 
     val runnableGraph = FlowGraph.closed(sink, sink, sink)((m1, m2, m3) => m1.flatMap(_ => m2).flatMap(_ => m3).onComplete(xx => { println("hi"); actorSystem.shutdown; })) { implicit builder =>
       (s1, s2, s3) =>
@@ -26,9 +27,9 @@ object WordCounterClosedShape {
         val broadcast = builder.add(Broadcast[ByteString](3))
         fileSource ~> broadcast.in
 
-        broadcast.out(0) ~> Flow[ByteString].map(x => x.decodeString("UTF-8").length) ~> s1
-        broadcast.out(1) ~> Flow[ByteString].map(x => x.decodeString("UTF-8").split(" ").length) ~> s2
-        broadcast.out(2) ~> Flow[ByteString].map(x => x.decodeString("UTF-8").split("\n").length) ~> s3
+        broadcast.out(0) ~> flow.map(_.length) ~> s1
+        broadcast.out(1) ~> flow.map(_.split(" ").length) ~> s2
+        broadcast.out(2) ~> flow.map(_.split("\n").length) ~> s3
     }
     runnableGraph.run()
   }
