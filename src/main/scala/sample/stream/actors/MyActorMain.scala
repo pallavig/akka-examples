@@ -1,13 +1,24 @@
 package sample.stream.actors
 
-import akka.actor.{Props, ActorSystem, Actor}
+import akka.actor.{Actor, ActorSystem, Props}
+
+class MyActor2 extends Actor {
+  override def receive: Receive = {
+    case "test" => println("forwarded message")
+  }
+}
 
 class MyActor extends Actor {
-  val myActor = context.actorOf(Props[MyActor], name = "myactor")
+
+  val myActor = context.actorOf(Props[MyActor2], name = "myactor")
 
   override def receive = {
-    case "test" => println("test message", myActor)
+    case x if x == "test" => {
+      println("test message", myActor)
+      myActor.forward(x)
+    }
   }
+
 }
 
 object MyActorMain {
