@@ -8,7 +8,7 @@ import akka.stream.scaladsl._
 import akka.util.ByteString
 
 import scala.concurrent.forkjoin.ThreadLocalRandom
-import scala.util.{Failure, Success}
+import scala.util.{ Failure, Success }
 
 object WritePrimes {
 

@@ -2,10 +2,10 @@ package sample.stream.experiments
 
 import akka.actor.ActorSystem
 import akka.stream.ActorMaterializer
-import akka.stream.scaladsl.{Flow, Sink, Source, Tcp}
+import akka.stream.scaladsl.{ Flow, Sink, Source, Tcp }
 import akka.util.ByteString
 
-import scala.util.{Failure, Success}
+import scala.util.{ Failure, Success }
 
 object TcpEcho {
 

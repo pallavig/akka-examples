@@ -5,14 +5,14 @@ import java.io.File
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.HttpEntity.Chunked
 import akka.http.scaladsl.model._
-import akka.stream.io.{SynchronousFileSink, SynchronousFileSource}
-import akka.stream.scaladsl.{Sink, Source}
+import akka.stream.io.{ SynchronousFileSink, SynchronousFileSource }
+import akka.stream.scaladsl.{ Sink, Source }
 import akka.util.ByteString
 
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.concurrent.duration._
-import scala.util.{Failure, Success, Try}
+import scala.util.{ Failure, Success, Try }
 
 class AService {
   import A._

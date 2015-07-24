@@ -16,9 +16,9 @@ case class Player(id: Int, sign: String) {}
 case class Box(sign: Option[String] = None)
 
 case class Board(grid: List[List[Box]]) {
-//  def play(co_ordinates: (Int, Int), sign: String): Board = {
-//
-//  }
+  //  def play(co_ordinates: (Int, Int), sign: String): Board = {
+  //
+  //  }
 }
 
 case class Game(players: (Player, Player), board: Board) {
@@ -26,9 +26,9 @@ case class Game(players: (Player, Player), board: Board) {
 
   def next = Game((players._2, players._1), board)
 
-//  def play(player: Player, co_ordinates: (Int, Int)) = {
-//    Game(players, board.play(co_ordinates, player.sign))
-//  }
+  //  def play(player: Player, co_ordinates: (Int, Int)) = {
+  //    Game(players, board.play(co_ordinates, player.sign))
+  //  }
 }
 
 object UiListener extends JSApp {
@@ -69,7 +69,7 @@ object UiListener extends JSApp {
     def buttonClicked(element: Button) = {
       element.textContent = game.currentPlayer.sign
       game = game.next
-//      Game(game.players, )
+      //      Game(game.players, )
       Cancel
     }
   }
