@@ -32,13 +32,12 @@ object WordCounterPartialShape {
     val eventualLong = fileSource.viaMat(customFlow)(Keep.left).to(Sink.foreach(println)).run()
     eventualLong.onComplete(_ => actorSystem.shutdown())
   }
-  
+
   def characterCounterFlow = {
-    Flow() { implicit builder=>
+    Flow() { implicit builder =>
       val flowShape = builder.add(Flow[String].map(_.length))
       (flowShape.inlet, flowShape.outlet)
     }
   }
-  
-  
+
 }

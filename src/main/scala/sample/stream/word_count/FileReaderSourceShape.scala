@@ -3,7 +3,7 @@ package sample.stream.word_count
 import java.io.File
 
 import akka.actor.ActorSystem
-import akka.stream.{ SourceShape, ActorMaterializer }
+import akka.stream.ActorMaterializer
 import akka.stream.io.SynchronousFileSource
 import akka.stream.scaladsl._
 import akka.util.ByteString
