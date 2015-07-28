@@ -9,11 +9,12 @@ import akka.stream.scaladsl._
 import akka.util.ByteString
 
 object WordCounterPartialShape {
+  implicit val actorSystem = ActorSystem("word-counter")
+  implicit val materializer = ActorMaterializer()
+
   def main(args: Array[String]) {
     val fileSource = SynchronousFileSource(new File("abc.txt"))
 
-    implicit val actorSystem = ActorSystem("word-counter")
-    implicit val materializer = ActorMaterializer()
     import actorSystem.dispatcher
     import FlowGraph.Implicits._
 

@@ -15,7 +15,8 @@ class FileReaderSourceShapeSpec extends FunSpec with MustMatchers {
 
       source.to(Sink.actorRef(probe.ref, "completed")).run()
 
-      probe.expectMsgAnyClassOf("".getClass) //find right way to do this
+      val expectedContent = scala.io.Source.fromFile(filename).mkString
+      probe.expectMsg(expectedContent)
       ()
     }
   }
