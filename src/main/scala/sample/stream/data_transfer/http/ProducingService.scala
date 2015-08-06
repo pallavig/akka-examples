@@ -38,6 +38,8 @@ class ProducingService {
   }
 
   def send = {
+    import actorSystem.dispatcher
+
     val poolFlow = Http().superPool[Uri]()
 
     files
