@@ -13,7 +13,26 @@ object Configs {
   implicit val materializer = ActorMaterializer()
 }
 
+case class TickEvent(tickSign: String, coOrdinates: CoOrdinates)
+
+case class CoOrdinates(x: Int, y: Int)
+
+object CoOrdinates {
+  def apply(commaSeperatedCoOrdinates: String): CoOrdinates = {
+    val points = commaSeperatedCoOrdinates.split(",").map(_.toInt)
+    CoOrdinates(points(0), points(1))
+  }
+}
+
 object Main {
+
+  def parse(event: String) = {
+    val inputs = event.split("/")
+    val tickSign = inputs(1)
+    val coOrdinates = CoOrdinates.apply(inputs(0))
+    TickEvent(tickSign, coOrdinates)
+  }
+
   def main(args: Array[String]) {
     import Configs._
 
@@ -23,7 +42,7 @@ object Main {
 
       pathPrefix("tic") {
         path(Rest) { event =>
-          println(event)
+          println(parse(event))
           complete(HttpResponse(headers = List(accessControlAllowOrigin, accessControlAllowHeaders)))
         }
       }
