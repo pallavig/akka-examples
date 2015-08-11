@@ -58,6 +58,14 @@ object UiListener extends JSApp {
     ))
   }
 
+  def sendRequest(player: Player, co_ordinates: (Int, Int)) = {
+    val url = s"http://localhost:8082/tic/${co_ordinates._1},${co_ordinates._2}/${player.sign}"
+
+    val request = new XMLHttpRequest
+    request.open("GET", url)
+    request.send()
+  }
+
   @JSExport
   override def main(): Unit = {
     var game = init
@@ -70,7 +78,9 @@ object UiListener extends JSApp {
       element.textContent = currentPlayer.sign
       game = game.next
       val clickedButtonsIdentity = element.id.split("-")
-      game = game.play(currentPlayer, (clickedButtonsIdentity(0).toInt, clickedButtonsIdentity(1).toInt))
+      val co_ordinates = (clickedButtonsIdentity(0).toInt, clickedButtonsIdentity(1).toInt)
+      game = game.play(currentPlayer, co_ordinates)
+      sendRequest(currentPlayer, co_ordinates)
       Cancel
     }
 
