@@ -1,4 +1,4 @@
-package sample.stream.tic_tac_toe
+package sample.stream.tic_tac_toe.front_end
 
 import monifu.concurrent.Implicits.globalScheduler
 import monifu.reactive.Ack.Cancel
