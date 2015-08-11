@@ -1,16 +1,19 @@
 package sample.stream.tic_tac_toe.back_end
 
-import akka.actor.ActorSystem
+import akka.actor.{ Props, ActorSystem }
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ HttpHeader, HttpResponse }
 import akka.http.scaladsl.model.headers.{ `Access-Control-Allow-Headers`, `Access-Control-Allow-Origin`, HttpOrigin, HttpOriginRange }
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.stream.ActorMaterializer
+import akka.util.Timeout
+import scala.concurrent.duration.DurationInt
 
 object Configs {
   implicit val actorSystem = ActorSystem()
   implicit val materializer = ActorMaterializer()
+  implicit val timeout = Timeout(5 seconds)
 }
 
 case class TickEvent(tickSign: String, coOrdinates: CoOrdinates)
@@ -25,6 +28,9 @@ object CoOrdinates {
 }
 
 object Main {
+
+  import Configs._
+  private val persistenceService = new PersistenceService(actorSystem.actorOf(Props(new MovesTracker)))
 
   def parse(event: String) = {
     val inputs = event.split("/")
@@ -42,7 +48,7 @@ object Main {
 
       pathPrefix("tic") {
         path(Rest) { event =>
-          println(parse(event))
+          persistenceService.persist(parse(event))
           complete(HttpResponse(headers = List(accessControlAllowOrigin, accessControlAllowHeaders)))
         }
       }

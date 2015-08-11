@@ -13,7 +13,10 @@ libraryDependencies ++= Seq(
   "org.monifu" %%% "monifu" % "1.0-M1",
   "org.scala-js" % "scalajs-dom_sjs0.6_2.11" % "0.8.1",
   "org.scalatest" % "scalatest_2.11" % "3.0.0-M7",
-  "com.typesafe.akka" % "akka-testkit_2.11" % "2.4-M2"
+  "com.typesafe.akka" % "akka-testkit_2.11" % "2.4-M2",
+  "org.iq80.leveldb" % "leveldb" % "0.7",
+  "org.fusesource.leveldbjni" % "leveldbjni-all" % "1.8",
+  "com.typesafe.akka" % "akka-persistence-experimental_2.11" % "2.4-M2"
 )
 
 //scalaJSStage in Global := FastOptStage
