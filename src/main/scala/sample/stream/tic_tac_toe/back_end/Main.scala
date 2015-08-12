@@ -42,7 +42,7 @@ object Main {
   def main(args: Array[String]) {
     import Configs._
 
-    val route: Route = {
+    val movesTrackerRoute: Route = {
       val accessControlAllowOrigin: HttpHeader = `Access-Control-Allow-Origin`.apply(HttpOrigin("http://localhost:8080"))
       val accessControlAllowHeaders = `Access-Control-Allow-Headers`(List("Access-Control-Allow-Origin"))
 
@@ -54,6 +54,16 @@ object Main {
       }
     }
 
-    Http().bindAndHandle(route, "localhost", 8082)
+    val gameRoute: Route = {
+      pathSingleSlash {
+        getFromResource("web/index.html")
+      } ~
+        path("akka-stream-scala-fastopt.js") {
+          getFromFile("./target/scala-2.11/akka-stream-scala-fastopt.js")
+        }
+    }
+
+    Http().bindAndHandle(movesTrackerRoute, "localhost", 8082)
+    Http().bindAndHandle(gameRoute, "localhost", 8080)
   }
 }

@@ -83,6 +83,5 @@ object UiListener extends JSApp {
       sendRequest(currentPlayer, co_ordinates)
       Cancel
     }
-
   }
 }
