@@ -19,6 +19,7 @@ object Main {
 object Configs {
   implicit val actorSystem = ActorSystem("http-server")
   implicit val materializer = ActorMaterializer()
+  implicit val ec = actorSystem.dispatcher
 }
 
 class Servers extends CommonMarshallers {
